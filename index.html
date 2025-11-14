@@ -1,107 +1,137 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jumia Style Store</title>
+    <title>Sammy Sales</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
         body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             background: #f4f4f4;
             margin: 0;
-            padding: 10px;
+            padding: 0;
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 10px 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Masonry layout */
-        .masonry {
-            column-count: 2;
-            column-gap: 12px;
+        header img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-right: 10px;
         }
 
-        @media (max-width: 600px) {
-            .masonry {
-                column-count: 1;
-            }
+        header h1 {
+            font-size: 20px;
+            margin: 0;
+            color: #ff6600;
+        }
+
+        /* Grid */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            padding: 15px;
         }
 
         .product {
             background: #fff;
-            margin: 0 0 12px;
-            padding: 10px;
+            width: 48%;
             border-radius: 10px;
-            display: inline-block;
-            width: 100%;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .product:hover {
+            transform: translateY(-3px);
         }
 
         .product img {
             width: 100%;
-            border-radius: 10px;
-            margin-bottom: 7px;
+            height: auto;
         }
 
         .name {
-            font-size: 16px;
+            padding: 10px;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .price {
+            padding: 0 10px 10px;
             font-size: 16px;
             font-weight: bold;
             color: #ff6600;
-            margin: 5px 0;
         }
 
         .buy {
             display: block;
-            text-align: center;
+            padding: 10px;
+            margin: 0 10px 10px;
             background: #25d366;
+            text-align: center;
             color: white;
-            padding: 10px 0;
-            border-radius: 6px;
             text-decoration: none;
-            margin-top: 7px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .product {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<h2>My Store</h2>
+<header>
+    <img src="https://i.ibb.co/jvg10g7m/IMG-20251114-WA0097.jpg" alt="Sammy Sales Logo">
+    <h1>Sammy Sales</h1>
+</header>
 
-<div class="masonry">
+<div class="grid">
 
     <div class="product">
-        <img src="https://via.placeholder.com/400x350?text=Product+1">
+        <img src="https://via.placeholder.com/400x300?text=Product+1" alt="Product 1">
         <div class="name">Product 1</div>
         <div class="price">₦5,000</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 1" target="_blank">Buy</a>
+        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 1" target="_blank">Buy on WhatsApp</a>
     </div>
 
     <div class="product">
-        <img src="https://via.placeholder.com/400x250?text=Product+2">
+        <img src="https://via.placeholder.com/400x250?text=Product+2" alt="Product 2">
         <div class="name">Product 2</div>
         <div class="price">₦10,000</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 2" target="_blank">Buy</a>
+        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 2" target="_blank">Buy on WhatsApp</a>
     </div>
 
     <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Product+3">
+        <img src="https://via.placeholder.com/400x350?text=Product+3" alt="Product 3">
         <div class="name">Product 3</div>
         <div class="price">₦12,500</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 3" target="_blank">Buy</a>
+        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 3" target="_blank">Buy on WhatsApp</a>
     </div>
 
     <div class="product">
-        <img src="https://via.placeholder.com/400x280?text=Product+4">
+        <img src="https://via.placeholder.com/400x280?text=Product+4" alt="Product 4">
         <div class="name">Product 4</div>
         <div class="price">₦8,000</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 4" target="_blank">Buy</a>
+        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 4" target="_blank">Buy on WhatsApp</a>
     </div>
 
 </div>
