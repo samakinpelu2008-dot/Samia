@@ -20,10 +20,11 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        header img {
+        header img.logo {
             width: 50px;
             height: 50px;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 50%;
             margin-right: 10px;
         }
 
@@ -33,28 +34,33 @@
             color: #ff6600;
         }
 
-        /* MASONRY GRID */
+        /* GRID */
         .grid {
-            max-width: 1200px;
-            margin: 15px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px;
+            justify-content: space-between;
         }
 
-        .grid-item {
+        .product {
             background: #fff;
-            margin-bottom: 15px;
+            width: 48%;
             border-radius: 10px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
             transition: transform 0.2s;
         }
 
-        .grid-item:hover {
+        .product:hover {
             transform: translateY(-3px);
         }
 
-        .grid-item img {
+        .product img {
             width: 100%;
-            display: block;
+            height: auto;
         }
 
         .name {
@@ -83,8 +89,8 @@
         }
 
         @media (max-width: 600px) {
-            .grid-item {
-                width: 100% !important;
+            .product {
+                width: 100%;
             }
         }
     </style>
@@ -92,61 +98,39 @@
 <body>
 
 <header>
-    <img src="https://i.ibb.co/jvg10g7m/IMG-20251114-WA0097.jpg" alt="Sammy Sales Logo">
+    <img src="https://i.ibb.co/cd3nw7b/IMG-20251114-WA0009.jpg" alt="Sammy Sales Logo" class="logo">
     <h1>Sammy Sales</h1>
 </header>
 
 <div class="grid">
-    <!-- Different height placeholders for stagger -->
-    <div class="grid-item">
-        <img src="https://via.placeholder.com/400x250?text=Product+1">
+    <div class="product">
+        <img src="https://i.ibb.co/XfBCDsvv/IMG-20251114-WA0106.jpg" alt="Product 1">
         <div class="name">Product 1</div>
         <div class="price">₦5,000</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 1" target="_blank">Buy on WhatsApp</a>
     </div>
-    <div class="grid-item">
-        <img src="https://via.placeholder.com/400x350?text=Product+2">
+
+    <div class="product">
+        <img src="https://i.ibb.co/6JG0d4h0/IMG-20251114-WA0098.jpg" alt="Product 2">
         <div class="name">Product 2</div>
-        <div class="price">₦10,000</div>
+        <div class="price">₦8,000</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 2" target="_blank">Buy on WhatsApp</a>
     </div>
-    <div class="grid-item">
-        <img src="https://via.placeholder.com/400x280?text=Product+3">
+
+    <div class="product">
+        <img src="https://i.ibb.co/cd3nw7b/IMG-20251114-WA0009.jpg" alt="Product 3">
         <div class="name">Product 3</div>
-        <div class="price">₦12,500</div>
+        <div class="price">₦12,000</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 3" target="_blank">Buy on WhatsApp</a>
     </div>
-    <div class="grid-item">
-        <img src="https://via.placeholder.com/400x320?text=Product+4">
+
+    <div class="product">
+        <img src="https://i.ibb.co/XfBCDsvv/IMG-20251114-WA0106.jpg" alt="Product 4">
         <div class="name">Product 4</div>
-        <div class="price">₦8,000</div>
+        <div class="price">₦7,500</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 4" target="_blank">Buy on WhatsApp</a>
     </div>
-    <div class="grid-item">
-        <img src="https://via.placeholder.com/400x270?text=Product+5">
-        <div class="name">Product 5</div>
-        <div class="price">₦7,500</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 5" target="_blank">Buy on WhatsApp</a>
-    </div>
-    <div class="grid-item">
-        <img src="https://via.placeholder.com/400x360?text=Product+6">
-        <div class="name">Product 6</div>
-        <div class="price">₦9,500</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 6" target="_blank">Buy on WhatsApp</a>
-    </div>
 </div>
-
-<!-- MASONRY JS -->
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script>
-    var grid = document.querySelector('.grid');
-    var msnry = new Masonry(grid, {
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-item',
-        gutter: 12,
-        percentPosition: true
-    });
-</script>
 
 </body>
 </html>
