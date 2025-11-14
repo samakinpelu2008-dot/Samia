@@ -3,7 +3,6 @@
 <head>
     <title>Sammy Sales</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +11,7 @@
             padding: 0;
         }
 
-        /* Header */
+        /* HEADER */
         header {
             display: flex;
             align-items: center;
@@ -34,23 +33,26 @@
             color: #ff6600;
         }
 
-        /* Grid */
+        /* MASONRY GRID */
         .grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: space-between;
+            column-count: 2;
+            column-gap: 12px;
             padding: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                column-count: 1;
+            }
         }
 
         .product {
             background: #fff;
-            width: 48%;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 12px;
             border-radius: 10px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
             transition: transform 0.2s;
         }
@@ -62,6 +64,7 @@
         .product img {
             width: 100%;
             height: auto;
+            display: block;
         }
 
         .name {
@@ -72,8 +75,8 @@
 
         .price {
             padding: 0 10px 10px;
-            font-size: 16px;
             font-weight: bold;
+            font-size: 16px;
             color: #ff6600;
         }
 
@@ -88,15 +91,8 @@
             border-radius: 6px;
             font-weight: bold;
         }
-
-        @media (max-width: 600px) {
-            .product {
-                width: 100%;
-            }
-        }
     </style>
 </head>
-
 <body>
 
 <header>
@@ -105,7 +101,6 @@
 </header>
 
 <div class="grid">
-
     <div class="product">
         <img src="https://via.placeholder.com/400x300?text=Product+1" alt="Product 1">
         <div class="name">Product 1</div>
@@ -134,7 +129,13 @@
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 4" target="_blank">Buy on WhatsApp</a>
     </div>
 
+    <div class="product">
+        <img src="https://via.placeholder.com/400x320?text=Product+5" alt="Product 5">
+        <div class="name">Product 5</div>
+        <div class="price">₦7,500</div>
+        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 5" target="_blank">Buy on WhatsApp</a>
+    </div>
 </div>
 
 </body>
-</html>
+    </html>
