@@ -34,33 +34,28 @@
             color: #ff6600;
         }
 
-        /* GRID */
+        /* MASONRY GRID */
         .grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 15px;
-            justify-content: space-between;
+            max-width: 1200px;
+            margin: 15px auto;
         }
 
-        .product {
+        .grid-item {
             background: #fff;
-            width: 48%;
+            margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
             transition: transform 0.2s;
         }
 
-        .product:hover {
+        .grid-item:hover {
             transform: translateY(-3px);
         }
 
-        .product img {
+        .grid-item img {
             width: 100%;
-            height: auto;
+            display: block;
         }
 
         .name {
@@ -89,8 +84,8 @@
         }
 
         @media (max-width: 600px) {
-            .product {
-                width: 100%;
+            .grid-item {
+                width: 100% !important;
             }
         }
     </style>
@@ -103,34 +98,43 @@
 </header>
 
 <div class="grid">
-    <div class="product">
+    <div class="grid-item">
         <img src="https://i.ibb.co/XfBCDsvv/IMG-20251114-WA0106.jpg" alt="Product 1">
         <div class="name">Product 1</div>
         <div class="price">₦5,000</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 1" target="_blank">Buy on WhatsApp</a>
     </div>
-
-    <div class="product">
+    <div class="grid-item">
         <img src="https://i.ibb.co/6JG0d4h0/IMG-20251114-WA0098.jpg" alt="Product 2">
         <div class="name">Product 2</div>
         <div class="price">₦8,000</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 2" target="_blank">Buy on WhatsApp</a>
     </div>
-
-    <div class="product">
-        <img src="https://i.ibb.co/cd3nw7b/IMG-20251114-WA0009.jpg" alt="Product 3">
+    <div class="grid-item">
+        <img src="https://i.ibb.co/XfBCDsvv/IMG-20251114-WA0106.jpg" alt="Product 3">
         <div class="name">Product 3</div>
         <div class="price">₦12,000</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 3" target="_blank">Buy on WhatsApp</a>
     </div>
-
-    <div class="product">
-        <img src="https://i.ibb.co/XfBCDsvv/IMG-20251114-WA0106.jpg" alt="Product 4">
+    <div class="grid-item">
+        <img src="https://i.ibb.co/6JG0d4h0/IMG-20251114-WA0098.jpg" alt="Product 4">
         <div class="name">Product 4</div>
         <div class="price">₦7,500</div>
         <a class="buy" href="https://wa.me/2349031163306?text=I want to buy Product 4" target="_blank">Buy on WhatsApp</a>
     </div>
 </div>
+
+<!-- MASONRY JS -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+    var grid = document.querySelector('.grid');
+    var msnry = new Masonry(grid, {
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-item',
+        gutter: 15,
+        percentPosition: true
+    });
+</script>
 
 </body>
 </html>
