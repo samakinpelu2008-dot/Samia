@@ -1,148 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>S.TECH PHONES</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-        }
-
-        /* HEADER */
-        header {
-            display: flex;
-            align-items: center;
-            background: #fff;
-            padding: 10px 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        header img.logo {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        header h1 {
-            font-size: 20px;
-            margin: 0;
-            color: #ff6600;
-        }
-
-        /* GRID */
-        .grid {
-            max-width: 1200px;
-            margin: 15px auto;
-        }
-
-        .grid-item {
-            background: #fff;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-
-        .grid-item:hover {
-            transform: translateY(-3px);
-        }
-
-        .grid-item img {
-            width: 100%;
-            display: block;
-        }
-
-        .name {
-            padding: 10px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .price {
-            padding: 0 10px 10px;
-            font-weight: bold;
-            font-size: 16px;
-            color: #ff6600;
-        }
-
-        .buy {
-            display: block;
-            padding: 10px;
-            margin: 0 10px 10px;
-            background: #25d366;
-            text-align: center;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 600px) {
-            .grid-item {
-                width: 100% !important;
-            }
-        }
-    </style>
+  <title>Live Football</title>
 </head>
 <body>
 
-<header>
-    <img src="https://i.ibb.co/yFYF7KvK/download-5.jpg" class="logo">
-    <h1>S.TECH PHONES</h1>
-</header>
+<h2>Live Football Matches</h2>
+<div id="matches"></div>
 
-<div class="grid">
-
-    <!-- PRODUCT 1 -->
-    <div class="grid-item">
-        <img src="https://i.ibb.co/8DyTMdvm/download-3.jpg" alt="iPhone 17 Pro Max">
-        <div class="name">iPhone 17 Pro Max</div>
-        <div class="price">₦3,500,000</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy the iPhone 17" target="_blank">Buy on WhatsApp</a>
-    </div>
-
-    <!-- PRODUCT 2 -->
-    <div class="grid-item">
-        <img src="https://i.ibb.co/S49vYt8c/download-4.jpg" alt="Samsung Galaxy S25 Ultra">
-        <div class="name">Samsung Galaxy S25 Ultra</div>
-        <div class="price">₦2,500,000</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy the Samsung Galaxy S25 Ultra" target="_blank">Buy on WhatsApp</a>
-    </div>
-
-    <!-- PRODUCT 3 -->
-    <div class="grid-item">
-        <img src="https://i.ibb.co/PZf2rrPp/images-30.jpg" alt="Redmi Note 14">
-        <div class="name">Redmi Note 14</div>
-        <div class="price">₦265,000</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=I want to buy the Redmi Note 14" target="_blank">Buy on WhatsApp</a>
-    </div>
-
-    <!-- PRODUCT 4 - YOUR WEBSITE -->
-    <div class="grid-item">
-        <img src="https://i.ibb.co/pvDsjgvs/IMG-20251114-WA0180.jpg" alt="Website Creation">
-        <div class="name">My Own Website</div>
-        <div class="price">CLICK TO KNOW</div>
-        <a class="buy" href="https://wa.me/2349031163306?text=S.tech I want you to create my dream website 😁" target="_blank">Order on WhatsApp</a>
-    </div>
-
-</div>
-
-<!-- MASONRY JS -->
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script>
-    var grid = document.querySelector('.grid');
-    var msnry = new Masonry(grid, {
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-item',
-        gutter: 15,
-        percentPosition: true
+fetch("https://api.sportsrc.org/?data=matches&category=football")
+.then(response => response.json())
+.then(data => {
+    let container = document.getElementById("matches");
+
+    data.forEach(match => {
+        let button = document.createElement("button");
+        button.innerText = match.title + " - Watch Live";
+        
+        button.onclick = function() {
+            fetch(`https://api.sportsrc.org/?data=detail&category=football&id=${match.id}`)
+            .then(res => res.json())
+            .then(detail => {
+                container.innerHTML += detail.streams[0].embed;
+            });
+        };
+
+        container.appendChild(button);
+        container.appendChild(document.createElement("br"));
     });
+});
 </script>
 
 </body>
