@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CPE Department App - Navbar Test</title>
+  <title>CPE Department App - Navbar</title>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide/dist/lucide.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -16,7 +18,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #DA291C; /* Manchester United red */
+      background-color: #DA291C;
       padding: 10px 15px;
       color: white;
       position: sticky;
@@ -36,17 +38,10 @@
       margin-right: 10px;
     }
 
-    /* Search icon */
-    .search {
-      font-size: 20px;
-      cursor: pointer;
-    }
-
     /* Center section */
     .center-section {
       flex: 1;
       display: flex;
-      align-items: center;
       justify-content: center;
     }
 
@@ -56,7 +51,7 @@
     }
 
     .logo {
-      height: 50px; /* natural size */
+      height: 50px;
       width: auto;
       margin-right: 15px;
     }
@@ -64,8 +59,7 @@
     .club-name {
       font-size: 22px;
       font-weight: bold;
-      color: white;
-      font-family: 'Arial Black', Gadget, sans-serif; /* bold fixed font */
+      font-family: 'Arial Black', Gadget, sans-serif;
       text-align: center;
     }
 
@@ -84,6 +78,31 @@
       height: 100%;
       object-fit: cover;
     }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 500px) {
+      .logo {
+        height: 40px;
+      }
+
+      .club-name {
+        font-size: 18px;
+      }
+
+      .account {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    /* Icon styling for lucide */
+    .lucide-icon {
+      width: 24px;
+      height: 24px;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
@@ -91,7 +110,7 @@
   <div class="topbar">
     <div class="left-section">
       <div class="hamburger">&#9776;</div>
-      <div class="search">&#128269;</div>
+      <i data-lucide="search" class="lucide-icon"></i>
     </div>
 
     <div class="center-section">
@@ -103,7 +122,7 @@
 
     <div class="right-section">
       <div class="account" onclick="handleAccountClick()">
-        <img src="https://via.placeholder.com/35/FFFFFF/FFFFFF?text=+" alt="Account">
+        <img src="https://i.ibb.co/0sZgxFD/profile-placeholder.png" alt="Account">
       </div>
     </div>
   </div>
@@ -115,6 +134,9 @@
   </div>
 
   <script>
+    // Activate Lucide icons
+    lucide.replace();
+
     function handleAccountClick() {
       alert("Account clicked. Later will redirect to login/dashboard.");
     }
