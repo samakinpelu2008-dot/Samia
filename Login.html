@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CPE Department App - Login</title>
+<title>CPE Department App - Login/Register</title>
 
-<!-- Lucide Icons -->
+<!-- Lucide Icons CDN -->
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <!-- Firebase -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDNaZ82JpMfErW4VOB-DiOQ9KwQZlKAly4",
@@ -23,224 +23,174 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  window.loginUser = async function() {
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful! Welcome " + userCredential.user.email);
-      // Redirect to homepage after login
-      window.location.href = "home.html";
-    } catch(error) {
-      alert("Login failed: " + error.message);
-    }
-  }
+  window.auth = getAuth(app); // make auth globally available
 </script>
 
 <style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+  }
 
-/* Top Bar with back icon */
-.top-bar {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  background-color: #DA291C;
-  padding: 0 15px;
-  box-sizing: border-box;
-}
+  /* Top header with logo + back button */
+  .top-header {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DA291C;
+  }
 
-.top-bar img {
-  height: 50px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
-}
+  .top-header img {
+    height: 40px;
+    width: auto;
+  }
 
-.back-icon {
-  position: absolute;
-  right: 15px;
-  cursor: pointer;
-  stroke: white;
-  width: 24px;
-  height: 24px;
-}
+  .back-icon {
+    position: absolute;
+    left: 15px;
+    cursor: pointer;
+    stroke: white;
+  }
 
-/* Sign In / Register toggle */
-.toggle-bar {
-  display: flex;
-  width: 100%;
-  height: 50px;
-  margin-top: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-}
+  /* Banner image */
+  .banner {
+    width: 100%;
+    height: auto;
+  }
 
-.toggle-bar div {
-  flex:1;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size: 18px;
-  font-weight:bold;
-  cursor:pointer;
-  transition: all 0.3s;
-}
+  /* SignIn/Register toggle bar */
+  .toggle-bar {
+    display: flex;
+    margin-top: 10px;
+    height: 50px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
 
-.toggle-bar .active {
-  background-color: #B71C1C; /* thick red */
-  color: #FFCDD2; /* light red text */
-}
+  .toggle-bar div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+  }
 
-.toggle-bar .inactive {
-  background-color: #fff;
-  color: #B71C1C;
-}
+  .toggle-bar .active {
+    background-color: #DA291C;
+    color: #fff;
+  }
 
-/* Form section */
-.form-section {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+  .toggle-bar .inactive {
+    background-color: #fff;
+    color: #DA291C;
+  }
 
-.form-section input {
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #B71C1C;
-  outline: none;
-}
+  /* Form styling */
+  form {
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
 
-.password-wrapper {
-  position: relative;
-}
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #DA291C;
+    border-radius: 5px;
+    font-size: 16px;
+  }
 
-.password-wrapper i {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  stroke: #FFCDD2;
-  width: 20px;
-  height: 20px;
-}
+  .password-container {
+    position: relative;
+  }
 
-/* Forgot password link */
-.forgot-link {
-  font-size: 14px;
-  color: #B71C1C;
-  cursor: pointer;
-  text-decoration: underline;
-}
+  .password-container .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    stroke: #DA291C;
+  }
 
-/* Sign in button */
-.submit-btn {
-  background-color: #B71C1C;
-  color:white;
-  padding:12px;
-  font-size:18px;
-  font-weight:bold;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
+  /* Forgot password link */
+  .forgot-link {
+    text-align: right;
+    font-size: 14px;
+    color: #DA291C;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
-/* Info card */
-.info-card {
-  background-color: #FFCDD2;
-  padding:10px 15px;
-  border-left:5px solid #B71C1C;
-  font-size:14px;
-  color:#B71C1C;
-  border-radius:4px;
-}
+  /* Info card */
+  .info-card {
+    background-color: #f8d7da;
+    border-left: 5px solid #DA291C;
+    padding: 10px;
+    font-size: 14px;
+    color: #DA291C;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 10px auto;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    background-color: #DA291C;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #b71c1c;
+  }
+
 </style>
 </head>
 <body>
 
-<!-- Top Image + Bar -->
-<div>
-  <img src="https://i.ibb.co/67JVHGGR/file-00000000451072469555c89659f31eb3.png" style="width:100%; height:auto;">
-  <div class="top-bar">
-    <i data-lucide="chevron-left" class="back-icon" onclick="window.location.href='index.html'"></i>
+<!-- Top header -->
+<div class="top-header">
+  <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" alt="CPE Logo">
+  <div class="back-icon" onclick="goBack()">
+    <i data-lucide="chevron-left"></i>
   </div>
 </div>
 
-<!-- Sign In / Register Toggle -->
+<!-- Banner image -->
+<img class="banner" src="https://i.ibb.co/67JVHGGR/file-00000000451072469555c89659f31eb3.png" alt="Banner">
+
+<!-- SignIn/Register toggle -->
 <div class="toggle-bar">
-  <div id="signInTab" class="active" onclick="switchTab('signIn')">SIGN IN</div>
+  <div id="signInTab" class="active" onclick="switchTab('signin')">SIGN IN</div>
   <div id="registerTab" class="inactive" onclick="switchTab('register')">REGISTER</div>
 </div>
 
-<!-- Form Section -->
-<div class="form-section" id="signInForm">
-  <input type="email" id="loginEmail" placeholder="Email Address">
-  <div class="password-wrapper">
-    <input type="password" id="loginPassword" placeholder="Password">
-    <i data-lucide="eye" onclick="togglePassword()"></i>
+<!-- SignIn Form -->
+<form id="signinForm">
+  <input type="email" id="signinEmail" placeholder="Email Address" required>
+  <div class="password-container">
+    <input type="password" id="signinPassword" placeholder="Password" required>
+    <i data-lucide="eye" class="eye-icon" onclick="togglePassword('signinPassword')"></i>
   </div>
-  <div class="forgot-link" onclick="window.location.href='forgot.html'">Forgot your password?</div>
+  <div class="forgot-link" onclick="goToForgot()">Forgot Password?</div>
   <div class="info-card">
     Do well to login with your email and use the password you'll easily remember to avoid problems in the future.
-  </div>
-  <button class="submit-btn" onclick="loginUser()">SIGN IN</button>
-</div>
-
-<!-- Register Form (hidden initially) -->
-<div class="form-section" id="registerForm" style="display:none;">
-  <input type="email" id="regEmail" placeholder="Email Address">
-  <input type="password" id="regPassword" placeholder="Password">
-  <input type="password" id="regConfirmPassword" placeholder="Confirm Password">
-  <div class="info-card">
-    By submitting your details, you agree to the use of your data by CPE Football Group in accordance with our Privacy Policy.
-  </div>
-  <button class="submit-btn">REGISTER</button>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  lucide.createIcons();
-});
-
-// Toggle password visibility
-function togglePassword() {
-  const pw = document.getElementById("loginPassword");
-  if (pw.type === "password") pw.type = "text";
-  else pw.type = "password";
-}
-
-// Switch Sign In / Register Tabs
-function switchTab(tab){
-  if(tab==='signIn'){
-    document.getElementById('signInForm').style.display='flex';
-    document.getElementById('registerForm').style.display='none';
-    document.getElementById('signInTab').classList.add('active');
-    document.getElementById('signInTab').classList.remove('inactive');
-    document.getElementById('registerTab').classList.add('inactive');
-    document.getElementById('registerTab').classList.remove('active');
-  } else {
-    document.getElementById('signInForm').style.display='none';
-    document.getElementById('registerForm').style.display='flex';
-    document.getElementById('signInTab').classList.add('inactive');
-    document.getElementById('signInTab').classList.remove('active');
-    document.getElementById('registerTab').classList.add('active');
-    document.getElementById('registerTab').classList.remove('inactive');
-  }
-}
-</script>
-
-</body>
-</html>
