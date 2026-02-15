@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CPE Department App - Test Navbar</title>
+  <title>CPE Department App - Logo Test</title>
   <style>
     body {
       margin: 0;
@@ -16,7 +16,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #B71C1C; /* deep red to match logo */
+      background-color: #DA291C; /* Updated Manchester United red */
       padding: 10px 15px;
       color: white;
       position: sticky;
@@ -46,18 +46,20 @@
     .logo-container {
       display: flex;
       align-items: center;
-      background-color: #B71C1C; /* same as navbar */
-      padding: 2px 5px;
-      border-radius: 5px;
+      background-color: transparent; /* remove any block background */
     }
 
     .logo {
-      height: 40px;
+      height: 60px; /* bigger logo */
+      width: 60px;  /* square to keep aspect */
       margin-right: 10px;
+      border-radius: 50%; /* makes it circular */
+      border: 2px solid white; /* optional: adds nice outline */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* subtle depth */
     }
 
     .club-name {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       color: white;
     }
@@ -69,7 +71,7 @@
       border-radius: 50%;
       overflow: hidden;
       cursor: pointer;
-      border: 2px solid white; /* makes it visible */
+      border: 2px solid white;
     }
 
     .account img {
@@ -89,7 +91,7 @@
 
     <div class="center-section">
       <div class="logo-container">
-        <img src="https://i.ibb.co/bRGXZ5tB/1000208165.png" alt="Club Logo" class="logo">
+        <img src="https://i.ibb.co/Ndthyk90/1000208202.png" alt="Club Logo" class="logo">
         <div class="club-name">CPE</div>
       </div>
     </div>
