@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CPE Department App - Navbar</title>
+  <title>CPE Department App - Full Hamburger Menu</title>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide/dist/lucide.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -11,7 +13,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Top Navbar */
+    /* Navbar */
     .topbar {
       display: flex;
       align-items: center;
@@ -29,14 +31,12 @@
       align-items: center;
     }
 
-    /* Hamburger menu */
     .hamburger {
       font-size: 24px;
       cursor: pointer;
       margin-right: 10px;
     }
 
-    /* Center section */
     .center-section {
       flex: 1;
       display: flex;
@@ -61,7 +61,6 @@
       text-align: center;
     }
 
-    /* Right section account icon */
     .right-section .account {
       width: 35px;
       height: 35px;
@@ -77,51 +76,85 @@
       object-fit: cover;
     }
 
-    /* Responsive adjustments */
-    @media screen and (max-width: 500px) {
-      .logo {
-        height: 40px;
-      }
-
-      .club-name {
-        font-size: 18px;
-      }
-
-      .account {
-        width: 30px;
-        height: 30px;
-      }
-
-      .search-icon svg {
-        width: 20px;
-        height: 20px;
-      }
+    /* Full-page hamburger menu */
+    .hamburger-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #DA291C;
+      color: white;
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+      overflow-y: auto;
     }
 
-    /* Search icon container */
-    .search-icon {
+    .hamburger-menu.active {
+      display: flex;
+    }
+
+    /* Menu top section with logo and close icon */
+    .menu-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .menu-top .close-icon {
+      font-size: 28px;
       cursor: pointer;
-      margin-left: 5px;
+    }
+
+    .menu-logo-container {
       display: flex;
       align-items: center;
+    }
+
+    .menu-logo-container .logo {
+      height: 50px;
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .separator {
+      width: 80%;
+      height: 2px;
+      background-color: white;
+      margin: 10px 0 20px 0;
+    }
+
+    /* Menu items */
+    .menu-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 22px;
+      text-align: center;
+    }
+
+    .menu-items a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .menu-items a:hover {
+      color: #FFD700; /* optional hover effect */
     }
   </style>
 </head>
 <body>
 
+  <!-- Navbar -->
   <div class="topbar">
     <div class="left-section">
-      <div class="hamburger">&#9776;</div>
-      
-      <!-- Lucide search icon embedded as SVG -->
-      <div class="search-icon" onclick="handleSearchClick()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-             viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" 
-             stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </div>
+      <div class="hamburger" onclick="openMenu()">&#9776;</div>
     </div>
 
     <div class="center-section">
@@ -133,24 +166,56 @@
 
     <div class="right-section">
       <div class="account" onclick="handleAccountClick()">
-        <img src="https://i.ibb.co/kVnh5NXh/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg" alt="ACCOUNT">
+        <img src="https://i.ibb.co/0sZgxFD/profile-placeholder.png" alt="Account">
       </div>
     </div>
   </div>
 
+  <!-- Full-page Hamburger Menu -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-top">
+      <div class="menu-logo-container">
+        <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" alt="Club Logo" class="logo">
+      </div>
+      <div class="close-icon" onclick="closeMenu()">
+        <i data-lucide="x"></i>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="menu-items">
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Fixtures</a>
+      <a href="#">Results</a>
+      <a href="#">Live</a>
+      <a href="#">Chat Hall</a>
+      <a href="#">CpeTV</a>
+      <a href="#">Players</a>
+      <a href="#">FANS</a>
+      <a href="#">CPE GIRLS</a>
+      <a href="#">JOIN THE TEAM</a>
+    </div>
+  </div>
+
   <div style="padding:20px;">
-    <p>Scroll down to test sticky navbar.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-    <p style="margin-bottom:1000px;"></p>
+    <p>Scroll down to test sticky navbar and hamburger menu.</p>
+    <p>Lorem ipsum dolor sit amet...</p>
   </div>
 
   <script>
-    function handleAccountClick() {
-      alert("Account clicked. Later will redirect to login/dashboard.");
+    // Activate Lucide icons
+    lucide.replace();
+
+    function openMenu() {
+      document.getElementById('hamburgerMenu').classList.add('active');
     }
 
-    function handleSearchClick() {
-      alert("Search clicked. Later will open search functionality.");
+    function closeMenu() {
+      document.getElementById('hamburgerMenu').classList.remove('active');
+    }
+
+    function handleAccountClick() {
+      alert("Account clicked. Later will redirect to login/dashboard.");
     }
   </script>
 
