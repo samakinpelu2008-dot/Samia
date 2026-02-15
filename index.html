@@ -8,6 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
     }
 
     /* Top Navbar */
@@ -15,7 +16,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #FF0000; /* red */
+      background-color: #B71C1C; /* deep red to match logo */
       padding: 10px 15px;
       color: white;
       position: sticky;
@@ -42,6 +43,14 @@
     }
 
     /* Center logo + name */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      background-color: #B71C1C; /* same as navbar */
+      padding: 2px 5px;
+      border-radius: 5px;
+    }
+
     .logo {
       height: 40px;
       margin-right: 10px;
@@ -50,6 +59,7 @@
     .club-name {
       font-size: 20px;
       font-weight: bold;
+      color: white;
     }
 
     /* Account placeholder */
@@ -57,9 +67,9 @@
       width: 35px;
       height: 35px;
       border-radius: 50%;
-      background-color: white;
       overflow: hidden;
       cursor: pointer;
+      border: 2px solid white; /* makes it visible */
     }
 
     .account img {
@@ -78,13 +88,15 @@
     </div>
 
     <div class="center-section">
-      <img src="https://i.ibb.co/bRGXZ5tB/1000208165.png" alt="Club Logo" class="logo">
-      <div class="club-name">CPE</div>
+      <div class="logo-container">
+        <img src="https://i.ibb.co/bRGXZ5tB/1000208165.png" alt="Club Logo" class="logo">
+        <div class="club-name">CPE</div>
+      </div>
     </div>
 
     <div class="right-section">
       <div class="account" onclick="handleAccountClick()">
-        <img src="https://via.placeholder.com/35" alt="Account">
+        <img src="https://via.placeholder.com/35/FFFFFF/FFFFFF?text=+" alt="Account">
       </div>
     </div>
   </div>
@@ -97,9 +109,7 @@
 
   <script>
     function handleAccountClick() {
-      // For now, just test redirect
       alert("Account clicked. Later will redirect to login/dashboard.");
-      // window.location.href = "login.html"; // Uncomment when login page exists
     }
   </script>
 
