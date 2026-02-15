@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CPE Department - Login/Register</title>
+<title>Login / Register - CPE Department App</title>
 
-<!-- Lucide Icons -->
-<script src="https://unpkg.com/lucide/dist/lucide.min.js"></script>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
   body {
@@ -15,143 +15,116 @@
     background-color: #f4f6f9;
   }
 
-  /* === Top Bar === */
+  /* Top Bar */
   .topbar {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: #DA291C;
-    height: 60px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 10px 15px;
     color: white;
-  }
-
-  .topbar .return-icon {
-    position: absolute;
-    left: 15px;
-    cursor: pointer;
   }
 
   .topbar .logo {
     height: 45px;
-    width: auto;
-  }
-
-  /* === Banner Image === */
-  .banner {
-    width: 100%;
-    max-width: 1536px;
     margin: 0 auto;
   }
-  .banner img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-  }
 
-  /* === Sign In / Register Toggle Bar === */
-  .toggle-bar {
-    display: flex;
-    height: 50px;
-    border: 2px solid #B71C1C; /* dark red border */
-    margin: 0;
-  }
-  .toggle-bar div {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 18px;
+  .return-icon {
     cursor: pointer;
-  }
-  .toggle-bar .active {
-    background-color: #B71C1C; /* thick red */
-    color: #FFCDD2; /* light red text */
-  }
-  .toggle-bar .inactive {
-    background-color: white;
-    color: #B71C1C; /* thick red text */
+    margin-right: 10px;
   }
 
-  /* === Form Container === */
+  /* Form Container */
   .form-container {
     padding: 20px;
-    max-width: 500px;
+    max-width: 400px;
     margin: 20px auto;
   }
 
-  .input-group {
+  /* Sign In / Register Bar */
+  .toggle-bar {
     display: flex;
+    border: 2px solid #8B0000;
+    border-radius: 5px;
+    overflow: hidden;
     margin-bottom: 20px;
   }
 
-  .input-group input {
-    flex: 0 0 80%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #B71C1C;
-    border-right: none;
-    border-radius: 5px 0 0 5px;
-    outline: none;
+  .toggle-bar div {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-weight: bold;
+    cursor: pointer;
   }
 
-  .input-group .eye-container {
-    flex: 0 0 20%;
-    background-color: #FFCDD2;
+  .toggle-bar .active-signin {
+    background-color: white;
+    color: #DA291C;
+  }
+
+  .toggle-bar .active-register {
+    background-color: #DA291C;
+    color: #FF6B6B;
+  }
+
+  /* Input fields */
+  .input-group {
     display: flex;
-    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .input-group input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #DA291C;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+  }
+
+  .eye-container {
+    flex: 0 0 15%;
+    background-color: #FF6B6B;
+    display: flex;
     justify-content: center;
-    border: 1px solid #B71C1C;
-    border-left: none;
+    align-items: center;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
   }
 
-  /* Forgot Password */
-  .forgot-password {
-    text-align: right;
-    margin-bottom: 20px;
-    color: #B71C1C;
-    font-size: 14px;
-    cursor: pointer;
+  .eye-container i {
+    color: white;
   }
 
-  /* Buttons */
+  .forgot-password {
+    text-align: right;
+    font-size: 14px;
+    color: #DA291C;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
   .submit-btn {
     width: 100%;
-    padding: 12px;
-    background-color: #B71C1C;
+    background-color: #DA291C;
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 15px;
   }
 
-  /* Info Card */
   .info-card {
-    background-color: #FFCDD2;
-    border-left: 5% solid #B71C1C;
-    padding: 15px;
-    margin-top: 15px;
+    background-color: #FF6B6B;
+    padding: 10px;
+    border-left: 5px solid #DA291C;
+    color: #DA291C;
     font-size: 14px;
-    color: #B71C1C;
-    border-radius: 5px;
-  }
-
-  /* Responsive */
-  @media (max-width: 500px) {
-    .form-container {
-      margin: 10px;
-    }
-    .toggle-bar div {
-      font-size: 16px;
-    }
+    border-radius: 3px;
   }
 </style>
 </head>
@@ -162,87 +135,107 @@
     <div class="return-icon" onclick="goHome()">
       <i data-lucide="chevron-left"></i>
     </div>
-    <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" class="logo">
+    <img src="https://i.ibb.co/C3sNb445/file-00000000451072469555c89659f31eb3.png" class="logo">
   </div>
 
-  <!-- Banner Image -->
-  <div class="banner">
-    <img src="https://i.ibb.co/C3sNb445/file-00000000451072469555c89659f31eb3.png" alt="Banner">
-  </div>
-
-  <!-- Sign In / Register Toggle -->
-  <div class="toggle-bar">
-    <div id="signinTab" class="active" onclick="switchTab('signin')">SIGN IN</div>
-    <div id="registerTab" class="inactive" onclick="switchTab('register')">REGISTER</div>
-  </div>
-
-  <!-- Form Container -->
   <div class="form-container">
+
+    <!-- Toggle Sign In / Register -->
+    <div class="toggle-bar">
+      <div id="signinToggle" class="active-signin" onclick="showSignIn()">SIGN IN</div>
+      <div id="registerToggle" onclick="showRegister()">REGISTER</div>
+    </div>
+
+    <!-- Sign In Form -->
     <div id="signinForm">
       <div class="input-group">
         <input type="email" placeholder="Email Address">
       </div>
+
       <div class="input-group">
         <input type="password" placeholder="Password">
-        <div class="eye-container">
+        <div class="eye-container" onclick="togglePassword()">
           <i data-lucide="eye"></i>
         </div>
       </div>
-      <div class="forgot-password">Forgot Password?</div>
+
+      <div class="forgot-password" onclick="forgotPassword()">Forgot Password?</div>
+
       <button class="submit-btn">SIGN IN</button>
+
       <div class="info-card">
         Do well to login with your email and use a password you'll easily remember to avoid problems in the future.
       </div>
     </div>
 
+    <!-- Register Form -->
     <div id="registerForm" style="display:none;">
       <div class="input-group">
         <input type="email" placeholder="Email Address">
       </div>
+
       <div class="input-group">
         <input type="password" placeholder="Password">
-        <div class="eye-container">
+        <div class="eye-container" onclick="togglePassword('register')">
           <i data-lucide="eye"></i>
         </div>
       </div>
+
       <div class="input-group">
         <input type="password" placeholder="Confirm Password">
-        <div class="eye-container">
+        <div class="eye-container" onclick="togglePassword('confirm')">
           <i data-lucide="eye"></i>
         </div>
       </div>
-      <button class="submit-btn">REGISTER</button>
+
       <div class="info-card">
         By submitting your details, you agree to the use of your data by CPE Football Group in accordance with our Privacy Policy.
       </div>
+
+      <button class="submit-btn">REGISTER</button>
     </div>
+
   </div>
 
 <script>
   lucide.createIcons();
 
-  function switchTab(tab) {
-    if(tab === 'signin') {
-      document.getElementById('signinForm').style.display = 'block';
-      document.getElementById('registerForm').style.display = 'none';
-      document.getElementById('signinTab').classList.add('active');
-      document.getElementById('signinTab').classList.remove('inactive');
-      document.getElementById('registerTab').classList.add('inactive');
-      document.getElementById('registerTab').classList.remove('active');
-    } else {
-      document.getElementById('signinForm').style.display = 'none';
-      document.getElementById('registerForm').style.display = 'block';
-      document.getElementById('registerTab').classList.add('active');
-      document.getElementById('registerTab').classList.remove('inactive');
-      document.getElementById('signinTab').classList.add('inactive');
-      document.getElementById('signinTab').classList.remove('active');
-    }
-  }
-
   function goHome() {
     window.location.href = 'index.html';
+  }
+
+  function showSignIn() {
+    document.getElementById('signinForm').style.display = 'block';
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('signinToggle').classList.add('active-signin');
+    document.getElementById('signinToggle').classList.remove('active-register');
+    document.getElementById('registerToggle').classList.remove('active-register');
+    document.getElementById('registerToggle').classList.remove('active-signin');
+  }
+
+  function showRegister() {
+    document.getElementById('signinForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'block';
+    document.getElementById('registerToggle').classList.add('active-register');
+    document.getElementById('registerToggle').classList.remove('active-signin');
+    document.getElementById('signinToggle').classList.remove('active-signin');
+    document.getElementById('signinToggle').classList.remove('active-register');
+  }
+
+  function togglePassword(type) {
+    let input;
+    if(type === 'register') input = document.querySelector('#registerForm input[type="password"]:first-of-type');
+    else if(type === 'confirm') input = document.querySelector('#registerForm input[type="password"]:last-of-type');
+    else input = document.querySelector('#signinForm input[type="password"]');
+    
+    if(input.type === 'password') input.type = 'text';
+    else input.type = 'password';
+  }
+
+  function forgotPassword() {
+    alert("Redirect to forgot password page (implement later).");
   }
 </script>
 
 </body>
-  </html>
+</html>
