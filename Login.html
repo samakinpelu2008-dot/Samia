@@ -3,246 +3,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CPE Login/Register</title>
+<title>CPE Department App - Login/Register</title>
 
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-  }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+}
 
-  /* Banner container */
-  .banner-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
+/* Full-width banner */
+.banner-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
 
-  .banner-container img {
-    width: 50%;
-    height: auto;
-    display: block;
-    object-fit: cover; /* ensures full width without squishing */
-  }
+/* Top Bar over banner */
+.topbar-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  background-color: rgba(218, 41, 28, 0.8); /* semi-transparent over image */
+  box-sizing: border-box;
+}
 
-  /* Top bar over banner */
-  .top-bar-banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent; /* transparent over banner */
-  }
+.topbar-banner .logo {
+  height: 45px;
+  width: auto;
+}
 
-  .top-bar-banner .logo {
-    height: 50px;
-    width: auto;
-    z-index: 2;
-  }
+.topbar-banner .back-icon {
+  cursor: pointer;
+  color: white;
+}
 
-  .top-bar-banner .back-icon {
-    position: absolute;
-    left: 15px;
-    cursor: pointer;
-    z-index: 2;
-  }
+/* Sign In / Register toggle */
+.toggle-bar {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  margin-top: 0;
+  border-left: 4px solid #b71c1c;
+  border-right: 4px solid #b71c1c;
+}
 
-  .back-icon svg {
-    width: 30px;
-    height: 30px;
-    stroke: white;
-  }
+.toggle-bar div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  user-select: none;
+}
 
-  /* Sign In / Register toggle bar */
-  .toggle-bar {
-    display: flex;
-    width: 100%;
-    height: 60px;
-    margin-top: -1px; /* remove any gap from banner */
-    border: 1px solid #A2001D; /* dark red edges */
-  }
+.toggle-bar .active {
+  background-color: #b71c1c; /* thick red for active */
+  color: #ffcdd2;            /* light red text */
+}
 
-  .toggle-tab {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s, color 0.3s;
-  }
+.toggle-bar .inactive {
+  background-color: white;
+  color: #b71c1c;            /* thick red text */
+}
 
-  .toggle-tab.active {
-    background-color: #DA291C; /* thick red for active */
-    color: #fff7f7;
-  }
+/* Form container */
+.form-container {
+  padding: 20px;
+}
 
-  .toggle-tab.inactive {
-    background-color: #fff; /* white for inactive */
-    color: #DA291C; /* thick red text */
-  }
+/* Input fields */
+.form-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #f28b82; /* light red */
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
-  /* Input container */
-  .input-container {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
+.input-password {
+  position: relative;
+}
 
-  .input-container input {
-    padding: 12px 15px;
+.input-password i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffcdd2;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Forgot password link */
+.forgot-link {
+  text-decoration: none;
+  color: #b71c1c;
+  font-weight: bold;
+  display: block;
+  margin: 5px 0 15px 0;
+}
+
+/* Main button */
+.main-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background-color: #b71c1c;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Info card */
+.info-card {
+  background-color: #ffcdd2;
+  border-left: 5px solid #b71c1c;
+  padding: 10px;
+  margin: 10px 0;
+  color: #b71c1c;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 500px) {
+  .toggle-bar div {
     font-size: 16px;
-    border-radius: 4px;
-    border: none;
-    background-color: #FFE5E5; /* light red background */
   }
-
-  .password-wrapper {
-    position: relative;
-  }
-
-  .password-wrapper i {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    stroke: #DA291C;
-  }
-
-  /* Forgot password */
-  .forgot-password {
-    margin: 0 20px;
+  .form-container input {
     font-size: 14px;
-    color: #DA291C;
-    cursor: pointer;
-    text-decoration: underline;
   }
-
-  /* Action button */
-  .action-btn {
-    margin: 20px;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #DA291C;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .main-btn {
+    font-size: 16px;
   }
-
-  /* Info card */
-  .info-card {
-    margin: 0 20px 20px 20px;
-    padding: 12px;
-    background-color: #FFD6D6; /* lighter red */
-    border-left: 5px solid #DA291C;
-    font-size: 14px;
-    color: #DA291C;
-  }
-
+}
 </style>
 </head>
 <body>
 
-  <!-- Banner -->
-  <div class="banner-container">
-    <img src="https://i.ibb.co/67JVHGGR/file-00000000451072469555c89659f31eb3.png" alt="Banner">
-    
-    <!-- Top bar with logo and back icon -->
-    <div class="top-bar-banner">
-      <i data-lucide="chevron-left" class="back-icon" onclick="goBack()"></i>
-      <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" class="logo" alt="Logo">
+<!-- Banner -->
+<div class="banner-container">
+  <img src="https://i.ibb.co/C3sNb445/file-00000000451072469555c89659f31eb3.png" alt="Banner">
+  <!-- Top bar with logo + return icon -->
+  <div class="topbar-banner">
+    <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" alt="Logo" class="logo">
+    <i data-lucide="chevron-left" class="back-icon" onclick="goBack()"></i>
+  </div>
+</div>
+
+<!-- Sign In / Register toggle -->
+<div class="toggle-bar">
+  <div id="signInTab" class="active" onclick="switchTab('signin')">SIGN IN</div>
+  <div id="registerTab" class="inactive" onclick="switchTab('register')">REGISTER</div>
+</div>
+
+<!-- Form container -->
+<div class="form-container">
+
+  <!-- Sign In Form -->
+  <form id="signinForm">
+    <input type="email" placeholder="Email Address" required>
+    <div class="input-password">
+      <input type="password" placeholder="Password" id="signinPassword" required>
+      <i data-lucide="eye" onclick="togglePassword('signinPassword')"></i>
     </div>
-  </div>
-
-  <!-- Sign In / Register Toggle Bar -->
-  <div class="toggle-bar">
-    <div class="toggle-tab active" id="signInTab" onclick="toggleTab('signin')">SIGN IN</div>
-    <div class="toggle-tab inactive" id="registerTab" onclick="toggleTab('register')">REGISTER</div>
-  </div>
-
-  <!-- Input form -->
-  <div class="input-container" id="formContainer">
-    <!-- Sign In fields -->
-    <input type="email" placeholder="Email Address" id="email">
-    <div class="password-wrapper">
-      <input type="password" placeholder="Password" id="password">
-      <i data-lucide="eye" onclick="togglePassword()"></i>
+    <a href="#" class="forgot-link">Forgot your password?</a>
+    <div class="info-card">
+      Do well to login with your email and use the password you'll easily remember to avoid problems in the future.
     </div>
-    <div class="forgot-password" onclick="goForgot()">Forgot your password?</div>
-    <button class="action-btn">SIGN IN</button>
-  </div>
+    <button type="submit" class="main-btn">SIGN IN</button>
+  </form>
 
-  <!-- Info Card -->
-  <div class="info-card">
-    Do well to login with your email and use the password you'll easily remember to avoid problems in the future.
-  </div>
+  <!-- Register Form -->
+  <form id="registerForm" style="display:none;">
+    <input type="email" placeholder="Email Address" required>
+    <div class="input-password">
+      <input type="password" placeholder="Password" id="registerPassword" required>
+      <i data-lucide="eye" onclick="togglePassword('registerPassword')"></i>
+    </div>
+    <div class="input-password">
+      <input type="password" placeholder="Confirm Password" id="registerConfirmPassword" required>
+      <i data-lucide="eye" onclick="togglePassword('registerConfirmPassword')"></i>
+    </div>
+    <div class="info-card">
+      By submitting your details, you agree to the use of your data by Cpe Football Group in accordance with our Privacy Policy. We use your data to personalise and improve your experience on our platforms, provide services you request and learn about your interests.
+    </div>
+    <button type="submit" class="main-btn">REGISTER</button>
+  </form>
+
+</div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
   lucide.createIcons();
+});
 
-  function goBack() {
-    window.history.back(); // Returns to previous page (home)
+// Back button to homepage
+function goBack() {
+  window.location.href = 'index.html';
+}
+
+// Toggle Sign In / Register tabs
+function switchTab(tab) {
+  if(tab === 'signin') {
+    document.getElementById('signinForm').style.display = 'block';
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('signInTab').classList.add('active');
+    document.getElementById('signInTab').classList.remove('inactive');
+    document.getElementById('registerTab').classList.add('inactive');
+    document.getElementById('registerTab').classList.remove('active');
+  } else {
+    document.getElementById('signinForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'block';
+    document.getElementById('signInTab').classList.add('inactive');
+    document.getElementById('signInTab').classList.remove('active');
+    document.getElementById('registerTab').classList.add('active');
+    document.getElementById('registerTab').classList.remove('inactive');
   }
+}
 
-  function togglePassword() {
-    const pwd = document.getElementById('password');
-    pwd.type = pwd.type === 'password' ? 'text' : 'password';
-  }
-
-  function toggleTab(tab) {
-    const signInTab = document.getElementById('signInTab');
-    const registerTab = document.getElementById('registerTab');
-    const formContainer = document.getElementById('formContainer');
-
-    if(tab === 'signin') {
-      signInTab.classList.add('active'); signInTab.classList.remove('inactive');
-      registerTab.classList.add('inactive'); registerTab.classList.remove('active');
-      formContainer.innerHTML = `
-        <input type="email" placeholder="Email Address" id="email">
-        <div class="password-wrapper">
-          <input type="password" placeholder="Password" id="password">
-          <i data-lucide="eye" onclick="togglePassword()"></i>
-        </div>
-        <div class="forgot-password" onclick="goForgot()">Forgot your password?</div>
-        <button class="action-btn">SIGN IN</button>
-      `;
-      lucide.createIcons();
-    } else {
-      signInTab.classList.add('inactive'); signInTab.classList.remove('active');
-      registerTab.classList.add('active'); registerTab.classList.remove('inactive');
-      formContainer.innerHTML = `
-        <input type="email" placeholder="Email Address" id="email">
-        <div class="password-wrapper">
-          <input type="password" placeholder="Password" id="password">
-          <i data-lucide="eye" onclick="togglePassword()"></i>
-        </div>
-        <div class="password-wrapper">
-          <input type="password" placeholder="Confirm Password" id="confirmPassword">
-          <i data-lucide="eye" onclick="togglePassword()"></i>
-        </div>
-        <button class="action-btn">REGISTER</button>
-      `;
-      lucide.createIcons();
-    }
-  }
-
-  function goForgot() {
-    alert("Redirect to forgot password page");
-  }
+// Toggle password visibility
+function togglePassword(id) {
+  const input = document.getElementById(id);
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
 </script>
 
 </body>
