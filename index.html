@@ -1,36 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Live Football</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPE Department App - Test Navbar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Top Navbar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #FF0000; /* red */
+      padding: 10px 15px;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .left-section, .center-section, .right-section {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    /* Search icon */
+    .search {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Center logo + name */
+    .logo {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .club-name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Account placeholder */
+    .account {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: white;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .account img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
 
-<h2>Live Football Matches</h2>
-<div id="matches"></div>
+  <div class="topbar">
+    <div class="left-section">
+      <div class="hamburger">&#9776;</div>
+      <div class="search">&#128269;</div>
+    </div>
 
-<script>
-fetch("https://api.sportsrc.org/?data=matches&category=football")
-.then(response => response.json())
-.then(data => {
-    let container = document.getElementById("matches");
+    <div class="center-section">
+      <img src="https://i.ibb.co/bRGXZ5tB/1000208165.png" alt="Club Logo" class="logo">
+      <div class="club-name">CPE</div>
+    </div>
 
-    data.forEach(match => {
-        let button = document.createElement("button");
-        button.innerText = match.title + " - Watch Live";
-        
-        button.onclick = function() {
-            fetch(`https://api.sportsrc.org/?data=detail&category=football&id=${match.id}`)
-            .then(res => res.json())
-            .then(detail => {
-                container.innerHTML += detail.streams[0].embed;
-            });
-        };
+    <div class="right-section">
+      <div class="account" onclick="handleAccountClick()">
+        <img src="https://via.placeholder.com/35" alt="Account">
+      </div>
+    </div>
+  </div>
 
-        container.appendChild(button);
-        container.appendChild(document.createElement("br"));
-    });
-});
-</script>
+  <div style="padding:20px;">
+    <p>Scroll down to test sticky navbar.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+    <p style="margin-bottom:1000px;"></p>
+  </div>
+
+  <script>
+    function handleAccountClick() {
+      // For now, just test redirect
+      alert("Account clicked. Later will redirect to login/dashboard.");
+      // window.location.href = "login.html"; // Uncomment when login page exists
+    }
+  </script>
 
 </body>
 </html>
