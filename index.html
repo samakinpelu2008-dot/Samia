@@ -1,125 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CPE Department App</title>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide/dist/lucide.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPE Department App</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f9;
-    }
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
 
-    /* Top Navbar */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #DA291C;
-      padding: 10px 15px;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .left-section, .center-section, .right-section {
-      display: flex;
-      align-items: center;
-    }
-
-    /* Hamburger menu icon */
-    .hamburger {
-      font-size: 24px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-
-    /* Center section */
-    .center-section {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo {
-      height: 50px;
-      width: auto;
-      margin-right: 15px;
-    }
-
-    .club-name {
-      font-size: 22px;
-      font-weight: bold;
-      font-family: 'Arial Black', Gadget, sans-serif;
-      text-align: center;
-    }
-
-    /* Right section account icon */
-    .right-section .account {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      overflow: hidden;
-      cursor: pointer;
-      border: 2px solid white;
-    }
-
-    .account img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Search icon container */
-    .search-icon {
-      cursor: pointer;
-      margin-left: 5px;
-      display: flex;
-      align-items: center;
-    }
-
-    /* Full-page Hamburger Menu */
-    .hamburger-menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #DA291C;
-      color: white;
-      z-index: 999;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    .hamburger-menu.active {
-      display: flex;
-    }
-
-    /* Hamburger menu top section */
-.menu-top {
-  position: relative;
-  width: 100%;
-  height: 60px;              /* Same height as homepage bar */
-  display: flex;
-  align-items: center;
-  justify-content: center;   /* Center everything */
-  padding: 0 10px;
-  box-sizing: border-box;
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
 }
 
-/* Logo perfectly centered */
+/* Top Navbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #DA291C;
+  padding: 10px 15px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.left-section, .center-section, .right-section {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.center-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 45px;
+  width: auto;
+  margin-right: 15px;
+}
+
+.club-name {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: 'Arial Black', Gadget, sans-serif;
+}
+
+.right-section .account {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.account img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
+
+/* Full-page Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: #DA291C;
+  color: white;
+  z-index: 999;
+  flex-direction: column;
+}
+
+.hamburger-menu.active {
+  display: flex;
+}
+
+/* Menu Top */
+.menu-top {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .menu-logo-container {
   display: flex;
   align-items: center;
@@ -127,160 +115,124 @@
   height: 100%;
 }
 
-/* Make logo fit cleanly */
 .menu-logo-container .logo {
-  height: 50px;     /* Perfect proportional size */
+  height: 38px;
   width: auto;
-  object-fit: contain;
-  display: block;
 }
 
-/* X icon positioned absolutely to the right */
+/* PERFECT X POSITION */
 .close-icon {
   position: absolute;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
 }
 
-    .separator {
-      width: 90%;
-      height: 2px;
-      background-color: white;
-      margin: 5px auto 20px auto;
-    }
+.close-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: white;
+}
 
-    /* Menu items styling */
-    .menu-items {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      font-size: 22px;
-      font-family: 'Arial Black', Gadget, sans-serif; /* bold fixed font */
-      text-align: left;
-      padding-left: 20px;
-    }
+/* Separator */
+.separator {
+  width: 90%;
+  height: 2px;
+  background-color: white;
+  margin: 5px auto 20px auto;
+}
 
-    .menu-items a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+/* Menu Items */
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 22px;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  padding-left: 20px;
+}
 
-    .menu-items a:hover {
-      color: #FFD700;
-    }
+.menu-items a {
+  color: white;
+  text-decoration: none;
+}
 
-    /* Responsive adjustments */
-    @media screen and (max-width: 500px) {
-      .logo {
-        height: 40px;
-      }
-      .club-name {
-        font-size: 18px;
-      }
-      .account {
-        width: 30px;
-        height: 30px;
-      }
-      .menu-items {
-        font-size: 18px;
-      }
-    }
-  </style>
+.menu-items a:hover {
+  color: #FFD700;
+}
+
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="topbar">
-    <div class="left-section">
-      <div class="hamburger" onclick="openMenu()">&#9776;</div>
-      
-      <!-- Search icon -->
-      <div class="search-icon" onclick="handleSearchClick()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-             viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" 
-             stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </div>
-    </div>
+<!-- Navbar -->
+<div class="topbar">
+  <div class="left-section">
+    <div class="hamburger" onclick="openMenu()">&#9776;</div>
 
-    <div class="center-section">
-      <div class="logo-container">
-        <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" alt="Club Logo" class="logo">
-        <div class="club-name">CPE</div>
-      </div>
-    </div>
-
-    <div class="right-section">
-      <div class="account" onclick="handleAccountClick()">
-        <img src="https://i.ibb.co/0sZgxFD/profile-placeholder.png" alt="Account">
-      </div>
+    <div class="search-icon">
+      <i data-lucide="search"></i>
     </div>
   </div>
 
-  <!-- Full-page Hamburger Menu -->
-  <div class="hamburger-menu" id="hamburgerMenu">
-    <div class="menu-top">
-      <div class="menu-logo-container">
-        <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" alt="Club Logo" class="logo">
-      </div>
-      <div class="close-icon" onclick="closeMenu()">
-        <i data-lucide="x"></i>
-      </div>
-    </div>
-
-    <div class="separator"></div>
-
-    <div class="menu-items">
-      <a href="#">Home</a>
-      <a href="#">News</a>
-      <a href="#">Fixtures</a>
-      <a href="#">Results</a>
-      <a href="#">Live</a>
-      <a href="#">Chat Hall</a>
-      <a href="#">CpeTV</a>
-      <a href="#">Players</a>
-      <a href="#">FANS</a>
-      <a href="#">CPE GIRLS</a>
-      <a href="#">JOIN THE TEAM</a>
+  <div class="center-section">
+    <div class="logo-container">
+      <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" class="logo">
+      <div class="club-name">CPE</div>
     </div>
   </div>
 
-  <div style="padding:20px;">
-    <p>Scroll down to test sticky navbar and hamburger menu.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-    <p style="margin-bottom:1000px;"></p>
+  <div class="right-section">
+    <div class="account">
+      <img src="https://i.ibb.co/0sZgxFD/profile-placeholder.png">
+    </div>
+  </div>
+</div>
+
+<!-- Hamburger Menu -->
+<div class="hamburger-menu" id="hamburgerMenu">
+  <div class="menu-top">
+    <div class="menu-logo-container">
+      <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" class="logo">
+    </div>
+
+    <!-- X ICON -->
+    <div class="close-icon" onclick="closeMenu()">
+      <i data-lucide="x"></i>
+    </div>
   </div>
 
-  <script>
-    // Activate Lucide icons
-    lucide.replace();
+  <div class="separator"></div>
 
-    // Open hamburger menu
-    function openMenu() {
-      document.getElementById('hamburgerMenu').classList.add('active');
-    }
+  <div class="menu-items">
+    <a href="#">Home</a>
+    <a href="#">News</a>
+    <a href="#">Fixtures</a>
+    <a href="#">Results</a>
+    <a href="#">Live</a>
+    <a href="#">Chat Hall</a>
+    <a href="#">CpeTV</a>
+    <a href="#">Players</a>
+    <a href="#">FANS</a>
+    <a href="#">CPE GIRLS</a>
+    <a href="#">JOIN THE TEAM</a>
+  </div>
+</div>
 
-    // Close hamburger menu
-    function closeMenu() {
-      document.getElementById('hamburgerMenu').classList.remove('active');
-    }
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  lucide.createIcons();
+});
 
-    function handleAccountClick() {
-      alert("Account clicked. Later will redirect to login/dashboard.");
-    }
+function openMenu() {
+  document.getElementById("hamburgerMenu").classList.add("active");
+}
 
-    function handleSearchClick() {
-      alert("Search clicked. Later will open search functionality.");
-    }
-  </script>
+function closeMenu() {
+  document.getElementById("hamburgerMenu").classList.remove("active");
+}
+</script>
 
 </body>
 </html>
