@@ -53,7 +53,7 @@ body {
 .logo {
   height: 45px;
   width: auto;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .club-name {
@@ -116,11 +116,11 @@ body {
 }
 
 .menu-logo-container .logo {
-  height: 50px;
+  height: 45px;
   width: auto;
 }
 
-/* PERFECT X POSITION */
+/* X ICON */
 .close-icon {
   position: absolute;
   right: 20px;
@@ -130,8 +130,8 @@ body {
 }
 
 .close-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   stroke: white;
 }
 
@@ -162,6 +162,32 @@ body {
   color: #FFD700;
 }
 
+/* ===== HOME PAGE CONTENT (White Area) ===== */
+
+.home-content {
+  padding: 20px;
+}
+
+.post {
+  background: white;
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.post-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.post-date {
+  font-size: 13px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -190,6 +216,9 @@ body {
   </div>
 </div>
 
+<!-- ===== WHITE HOME PAGE SECTION ===== -->
+<div id="home-content" class="home-content"></div>
+
 <!-- Hamburger Menu -->
 <div class="hamburger-menu" id="hamburgerMenu">
   <div class="menu-top">
@@ -197,7 +226,6 @@ body {
       <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" class="logo">
     </div>
 
-    <!-- X ICON -->
     <div class="close-icon" onclick="closeMenu()">
       <i data-lucide="x"></i>
     </div>
@@ -223,6 +251,40 @@ body {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   lucide.createIcons();
+
+  // ===== DYNAMIC POSTS =====
+  const posts = [
+    {
+      title: "Welcome to CPE Department",
+      date: "February 2026",
+      content: "This is the official launch of the CPE Department App."
+    },
+    {
+      title: "Upcoming Fixture",
+      date: "March 2026",
+      content: "CPE vs Electrical Department. Stay tuned!"
+    },
+    {
+      title: "CpeTV Launch",
+      date: "March 2026",
+      content: "CpeTV will stream all major matches live."
+    }
+  ];
+
+  const homeContainer = document.getElementById("home-content");
+
+  posts.forEach(post => {
+    const postDiv = document.createElement("div");
+    postDiv.classList.add("post");
+
+    postDiv.innerHTML = `
+      <div class="post-title">${post.title}</div>
+      <div class="post-date">${post.date}</div>
+      <div>${post.content}</div>
+    `;
+
+    homeContainer.appendChild(postDiv);
+  });
 });
 
 function openMenu() {
