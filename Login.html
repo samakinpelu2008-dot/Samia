@@ -9,241 +9,262 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-}
-
-/* Full-width banner */
-.banner-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-/* Top Bar over banner */
-.topbar-banner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
-  background-color: rgba(218, 41, 28, 0.8); /* semi-transparent over image */
-  box-sizing: border-box;
-}
-
-.topbar-banner .logo {
-  height: 45px;
-  width: auto;
-}
-
-.topbar-banner .back-icon {
-  cursor: pointer;
-  color: white;
-}
-
-/* Sign In / Register toggle */
-.toggle-bar {
-  display: flex;
-  height: 50px;
-  width: 100%;
-  margin-top: 0;
-  border-left: 4px solid #b71c1c;
-  border-right: 4px solid #b71c1c;
-}
-
-.toggle-bar div {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  user-select: none;
-}
-
-.toggle-bar .active {
-  background-color: #b71c1c; /* thick red for active */
-  color: #ffcdd2;            /* light red text */
-}
-
-.toggle-bar .inactive {
-  background-color: white;
-  color: #b71c1c;            /* thick red text */
-}
-
-/* Form container */
-.form-container {
-  padding: 20px;
-}
-
-/* Input fields */
-.form-container input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #f28b82; /* light red */
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
-
-.input-password {
-  position: relative;
-}
-
-.input-password i {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #ffcdd2;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Forgot password link */
-.forgot-link {
-  text-decoration: none;
-  color: #b71c1c;
-  font-weight: bold;
-  display: block;
-  margin: 5px 0 15px 0;
-}
-
-/* Main button */
-.main-btn {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  background-color: #b71c1c;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Info card */
-.info-card {
-  background-color: #ffcdd2;
-  border-left: 5px solid #b71c1c;
-  padding: 10px;
-  margin: 10px 0;
-  color: #b71c1c;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 500px) {
-  .toggle-bar div {
-    font-size: 16px;
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
   }
+
+  /* Banner image */
+  .banner {
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* adjust max height as needed */
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Top bar for login/register pages */
+  .topbar-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 60px;
+    background-color: #fff;
+  }
+
+  .topbar-login .logo {
+    height: 50px;
+    width: auto;
+  }
+
+  .topbar-login .back-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    stroke: #DA291C;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Sign In / Register toggle bar */
+  .toggle-bar {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    border-top: 2px solid #DA291C;
+    border-bottom: 2px solid #DA291C;
+  }
+
+  .toggle-bar div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .toggle-bar .active {
+    background-color: #DA291C;
+    color: #f4f6f9;
+  }
+
+  .toggle-bar .inactive {
+    background-color: #fff;
+    color: #DA291C;
+  }
+
+  /* Form container */
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #DA291C;
+  }
+
   .form-container input {
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #DA291C;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  /* Password wrapper for eye icon */
+  .password-wrapper {
+    position: relative;
+  }
+
+  .password-wrapper input {
+    padding-right: 50px; /* space for eye icon */
+  }
+
+  .password-wrapper .eye-icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    background-color: #ffcccc;
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .password-wrapper .eye-icon svg {
+    stroke: #DA291C;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #DA291C;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  /* Info card */
+  .info-card {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #ffcccc;
+    border-left: 5px solid #DA291C;
+    color: #DA291C;
     font-size: 14px;
   }
-  .main-btn {
-    font-size: 16px;
+
+  /* Forgot password link */
+  .forgot-link {
+    display: block;
+    text-align: right;
+    margin-bottom: 15px;
+    color: #DA291C;
+    text-decoration: none;
   }
-}
+
 </style>
 </head>
 <body>
 
-<!-- Banner -->
-<div class="banner-container">
-  <img src="https://i.ibb.co/C3sNb445/file-00000000451072469555c89659f31eb3.png" alt="Banner">
-  <!-- Top bar with logo + return icon -->
-  <div class="topbar-banner">
-    <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" alt="Logo" class="logo">
+  <!-- Banner -->
+  <img src="https://i.ibb.co/C3sNb445/file-00000000451072469555c89659f31eb3.png" alt="Banner" class="banner">
+
+  <!-- Top bar with logo and back button -->
+  <div class="topbar-login">
     <i data-lucide="chevron-left" class="back-icon" onclick="goBack()"></i>
+    <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" class="logo">
   </div>
-</div>
 
-<!-- Sign In / Register toggle -->
-<div class="toggle-bar">
-  <div id="signInTab" class="active" onclick="switchTab('signin')">SIGN IN</div>
-  <div id="registerTab" class="inactive" onclick="switchTab('register')">REGISTER</div>
-</div>
+  <!-- Sign In / Register toggle -->
+  <div class="toggle-bar">
+    <div id="signInTab" class="active" onclick="switchTab('signIn')">SIGN IN</div>
+    <div id="registerTab" class="inactive" onclick="switchTab('register')">REGISTER</div>
+  </div>
 
-<!-- Form container -->
-<div class="form-container">
+  <!-- Form container -->
+  <div class="form-container" id="signInForm">
+    <label>Email Address</label>
+    <input type="email" placeholder="Email Address">
 
-  <!-- Sign In Form -->
-  <form id="signinForm">
-    <input type="email" placeholder="Email Address" required>
-    <div class="input-password">
-      <input type="password" placeholder="Password" id="signinPassword" required>
-      <i data-lucide="eye" onclick="togglePassword('signinPassword')"></i>
+    <label>Password</label>
+    <div class="password-wrapper">
+      <input type="password" placeholder="Password">
+      <div class="eye-icon" onclick="togglePassword(this)">
+        <i data-lucide="eye"></i>
+      </div>
     </div>
-    <a href="#" class="forgot-link">Forgot your password?</a>
+
+    <a href="forgot.html" class="forgot-link">Forgot your password?</a>
+
     <div class="info-card">
       Do well to login with your email and use the password you'll easily remember to avoid problems in the future.
     </div>
-    <button type="submit" class="main-btn">SIGN IN</button>
-  </form>
 
-  <!-- Register Form -->
-  <form id="registerForm" style="display:none;">
-    <input type="email" placeholder="Email Address" required>
-    <div class="input-password">
-      <input type="password" placeholder="Password" id="registerPassword" required>
-      <i data-lucide="eye" onclick="togglePassword('registerPassword')"></i>
+    <button class="submit-btn">SIGN IN</button>
+  </div>
+
+  <div class="form-container" id="registerForm" style="display:none;">
+    <label>Email Address</label>
+    <input type="email" placeholder="Email Address">
+
+    <label>Password</label>
+    <div class="password-wrapper">
+      <input type="password" placeholder="Password">
+      <div class="eye-icon" onclick="togglePassword(this)">
+        <i data-lucide="eye"></i>
+      </div>
     </div>
-    <div class="input-password">
-      <input type="password" placeholder="Confirm Password" id="registerConfirmPassword" required>
-      <i data-lucide="eye" onclick="togglePassword('registerConfirmPassword')"></i>
+
+    <label>Confirm Password</label>
+    <div class="password-wrapper">
+      <input type="password" placeholder="Confirm Password">
+      <div class="eye-icon" onclick="togglePassword(this)">
+        <i data-lucide="eye"></i>
+      </div>
     </div>
+
     <div class="info-card">
-      By submitting your details, you agree to the use of your data by Cpe Football Group in accordance with our Privacy Policy. We use your data to personalise and improve your experience on our platforms, provide services you request and learn about your interests.
+      By submitting your details, you agree to the use of your data by CPE Football Group in accordance with our Privacy Policy.
     </div>
-    <button type="submit" class="main-btn">REGISTER</button>
-  </form>
 
-</div>
+    <button class="submit-btn">REGISTER</button>
+  </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
   lucide.createIcons();
-});
 
-// Back button to homepage
-function goBack() {
-  window.location.href = 'index.html';
-}
-
-// Toggle Sign In / Register tabs
-function switchTab(tab) {
-  if(tab === 'signin') {
-    document.getElementById('signinForm').style.display = 'block';
-    document.getElementById('registerForm').style.display = 'none';
-    document.getElementById('signInTab').classList.add('active');
-    document.getElementById('signInTab').classList.remove('inactive');
-    document.getElementById('registerTab').classList.add('inactive');
-    document.getElementById('registerTab').classList.remove('active');
-  } else {
-    document.getElementById('signinForm').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'block';
-    document.getElementById('signInTab').classList.add('inactive');
-    document.getElementById('signInTab').classList.remove('active');
-    document.getElementById('registerTab').classList.add('active');
-    document.getElementById('registerTab').classList.remove('inactive');
+  function switchTab(tab) {
+    if(tab === 'signIn') {
+      document.getElementById('signInForm').style.display = 'block';
+      document.getElementById('registerForm').style.display = 'none';
+      document.getElementById('signInTab').classList.add('active');
+      document.getElementById('signInTab').classList.remove('inactive');
+      document.getElementById('registerTab').classList.add('inactive');
+      document.getElementById('registerTab').classList.remove('active');
+    } else {
+      document.getElementById('signInForm').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'block';
+      document.getElementById('signInTab').classList.add('inactive');
+      document.getElementById('signInTab').classList.remove('active');
+      document.getElementById('registerTab').classList.add('active');
+      document.getElementById('registerTab').classList.remove('inactive');
+    }
   }
-}
 
-// Toggle password visibility
-function togglePassword(id) {
-  const input = document.getElementById(id);
-  input.type = input.type === 'password' ? 'text' : 'password';
-}
+  function togglePassword(iconDiv) {
+    const input = iconDiv.previousElementSibling;
+    if(input.type === 'password') {
+      input.type = 'text';
+    } else {
+      input.type = 'password';
+    }
+  }
+
+  function goBack() {
+    window.history.back();
+  }
 </script>
 
 </body>
