@@ -42,26 +42,33 @@
       cursor: pointer;
     }
 
-    /* Center logo + name */
+    /* Center logo + name + account */
+    .center-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .logo-container {
       display: flex;
       align-items: center;
-      background-color: transparent;
     }
 
     .logo {
-      height: 50px; /* normal navbar height */
-      width: auto;  /* keep original proportions */
-      margin-right: 10px;
+      height: 50px; /* natural size */
+      width: auto;
+      margin-right: 15px;
     }
 
     .club-name {
       font-size: 22px;
       font-weight: bold;
       color: white;
+      font-family: 'Arial Black', Gadget, sans-serif; /* bold fixed font */
+      margin-right: 15px;
     }
 
-    /* Account placeholder */
     .account {
       width: 35px;
       height: 35px;
@@ -69,6 +76,7 @@
       overflow: hidden;
       cursor: pointer;
       border: 2px solid white;
+      margin-left: -5px; /* move a little to the left */
     }
 
     .account img {
@@ -90,12 +98,9 @@
       <div class="logo-container">
         <img src="https://i.ibb.co/pBYWJ1F6/1000208244.png" alt="Club Logo" class="logo">
         <div class="club-name">CPE</div>
-      </div>
-    </div>
-
-    <div class="right-section">
-      <div class="account" onclick="handleAccountClick()">
-        <img src="https://via.placeholder.com/35/FFFFFF/FFFFFF?text=+" alt="Account">
+        <div class="account" onclick="handleAccountClick()">
+          <img src="https://via.placeholder.com/35/FFFFFF/FFFFFF?text=+" alt="Account">
+        </div>
       </div>
     </div>
   </div>
